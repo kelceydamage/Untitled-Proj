@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "wave_pre_processor.h"
+#include "wave_preprocessor.h"
 
 // Defines
 // -----------------------------------------------------------------------> 80
@@ -48,6 +48,10 @@ int main(int argc, char **argv) {
     // buffer into the filename buffer.
     char cwd[1024]; // 1024 Bytes (string).
     if (getcwd(cwd, sizeof(cwd)) != NULL) {
+
+        // Copy instead of concat incase the buffer is not empty. If we were 
+        // to concate the cwd into the filename buffer we cannot guarantee
+        // the filename buffer is empty.
         strcpy(filename, cwd);
 
         // Get filename from the command line arguments. If there are less 
